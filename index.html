@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Teste AR.js Local</title>
+  <head>
+    <title>Teste AR.js - MLPrintLab</title>
 
-  <!-- Carregando ambos localmente -->
-  <script src="scripts/aframe.min.js"></script>
-  <script src="scripts/aframe-ar.js"></script>
-</head>
-<body style="margin:0; overflow:hidden;">
-  <a-scene embedded arjs="sourceType: webcam; facingMode: environment;">
-   <a-marker preset="custom" type="pattern" url="marcadores/marcador.patt">
-  <a-entity 
-  gltf-model="modelo/modelo.gltf" 
-  position="0 0.05 0"
-  scale="0.05 0.05 0.05"
-  rotation="0 0 0"
-  shadow="cast: false; receive: false"
-  animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
-</a-entity>
+    <!-- A-Frame -->
+    <script src="scripts/aframe.min.js"></script>
 
-</a-marker>
-    <a-entity camera></a-entity>
-  </a-scene>
-</body>
+    <!-- AR.js -->
+    <script src="scripts/aframe-ar.js"></script>
+  </head>
+
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam; facingMode: environment;">
+
+      <!-- Marcador personalizado -->
+      <a-marker preset="custom" type="pattern" url="marcadores/marcador.patt">
+
+        <!-- Plano base invisível para estabilidade -->
+        <a-plane 
+          position="0 0 0" 
+          rotation="-90 0 0" 
+          width="1" height="1" 
+          color="#ffffff" 
+          opacity="0.001">
+        </a-plane>
+
+        <!-- Modelo 3D rotacionando -->
+        <a-entity 
+          gltf-model="modelo/modelo.gltf"
+          position="0 0.05 0"
+          scale="0.05 0.05 0.05"
+          rotation="0 0 0"
+          shadow="cast: false; receive: false"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 5000">
+        </a-entity>
+
+      </a-marker>
+
+      <!-- Câmera -->
+      <a-entity camera></a-entity>
+    </a-scene>
+  </body>
 </html>
